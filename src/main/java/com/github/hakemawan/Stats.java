@@ -1,16 +1,23 @@
 package com.github.hakemawan;
 
-public class Stats {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-    //stats
-    Double health; //constitution*strength
-    Double strength; //main damage stat (strenght*pop)
-    Double constitution; //main defense stat (constitution*pop)
-    Double agility; // >agility attacks first
-    Double intelligence; 
-    Double range; // (intelligence + range + agility) /10 = # of attacks
-    Double growth; //pop growth per turn
-    Double pop;   // population
+public class Stats extends Kingdoms {
+
+    private String[] stringArray;
+    private String[] doubleArray;
+
+    // stats
+    private Double health; //constitution*strength
+    private Double strength; //main damage stat (strenght*pop)
+    private Double constitution; //main defense stat (constitution*pop)
+    private Double agility; // >agility attacks first
+    private Double intelligence; 
+    private Double range; // (intelligence + range + agility) /10 = # of attacks
+    private Double growth; //pop growth per turn
+    private Double pop;   // population
     
    /* public Stats() {   //default constructor(humans)
         strength = 10.0;  // 1
@@ -23,61 +30,25 @@ public class Stats {
         health = constitution * strenght;
     }*/
 
-    //setters and getters
-    /**
-     * @param strength the strength to set
-     */
-    public void setStrength(Double strength) {
-        this.strength = strength;
-    }
+    /*public static String[] setHumanStats() throws FileNotFoundException {
+        String[] storer = new String[8]; /
+        //Get scanner instance
+        Scanner scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0\\src\\main\\resources\\HumanStats.csv"));
+         
+        //Set the delimiter used in file
+        scanner.useDelimiter(",");
+        //Get all tokens and store them 
+        int i = 0;
+        while (scanner.hasNext()) 
+        {
+            storer[i] = scanner.next();
+            //holder[i]= Double.parseDouble(storer);
+            i++; 
+        }
+         
+        scanner.close();
+        return storer;
+    }*/
 
-    /**
-     * @param constitution the constitution to set
-     */
-    public void setConstitution(Double constitution) {
-        this.constitution = constitution;
-    }
-
-    /**
-     * @param agility the agility to set
-     */
-    public void setAgility(Double agility) {
-        this.agility = agility;
-    }
-
-    /**
-     * @param intelligence the intelligence to set
-     */
-    public void setIntelligence(Double intelligence) {
-        this.intelligence = intelligence;
-    }   
-
-    /**
-     * @param range the range to set
-     */
-    public void setRange(Double range) {
-        this.range = range;
-    }
-
-    /**
-     * @param growth the growth to set
-     */
-    public void setGrowth(Double growth) {
-        this.growth = growth;
-    }
-
-    /**
-     * @param pop the pop to set
-     */
-    public void setPop(Double pop) {
-        this.pop = pop;
-    }
-
-    /**
-     * @param health the health to set
-     */
-    public void setHealth(Double health) {
-        this.health = strength * constitution;;
-    }
 
 }
