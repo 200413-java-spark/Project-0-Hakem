@@ -14,3 +14,4 @@ target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/maven-archiver/pom.properties
 .project
 .classpath
+target/kingdomsclash-0.1.0.jar
