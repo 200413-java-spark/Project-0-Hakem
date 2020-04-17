@@ -6,10 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Stats extends Kingdoms {
+public class Stats {
 
     private String[] stringArray;
-    private String[] doubleArray;
+    private String[] statNameA = {"Health", "Strength", "Constitution", "Agility", "Intelligence", "Range", "Growth", "Population"};
+    private Double[] humanStatA; //Hold humans Statss
+    private Double[] elfStatA;
+    private Double[] dwarfStatA;
+    private Double[] goblinStatA;
+    private File myFile;
+
 
     // stats
     private Double health; //constitution*strength
@@ -32,77 +38,94 @@ public class Stats extends Kingdoms {
         health = constitution * strenght;
     }*/
 
-    public static ArrayList<String> setHumanStats() throws FileNotFoundException {
+    public static ArrayList<String> fetchFiles(String input) throws FileNotFoundException {
         ArrayList<String> storer = new ArrayList<>();
-        //Get scanner instance
-        Scanner scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0\\src\\main\\resources\\HumanStats.csv"));
-         
-        //Set the delimiter used in file
-        scanner.useDelimiter(",");
-        //Get all tokens and store them 
+        Scanner scanner;
         int i = 0;
-        while (scanner.hasNext()) 
-        {
-            storer.add(i, scanner.next());
-            //holder[i]= Double.parseDouble(storer);
-            i++; 
+        switch (input) {
+            case "1":
+                //Get scanner instance
+                scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0-Hakem\\src\\main\\resources\\HumanStats.csv"));
+                //Set the delimiter used in file
+                scanner.useDelimiter(",");
+                //Get all tokens and store them 
+                while (scanner.hasNext()) 
+                {
+                    storer.add(i, scanner.next());
+                    i++; 
+                }
+               return storer;
+            case "2":
+                scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0-Hakem\\src\\main\\resources\\ElfStats.csv"));
+                scanner.useDelimiter(",");
+                while (scanner.hasNext()) 
+                {
+                    storer.add(i, scanner.next());
+                    i++; 
+                }
+               return storer;
+            case "3":
+                scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0-Hakem\\src\\main\\resources\\DwarfStats.csv"));
+                scanner.useDelimiter(",");
+                while (scanner.hasNext()) 
+                {
+                    storer.add(i, scanner.next());
+                    i++; 
+                }
+           return storer;
+            case "4":
+                scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0-Hakem\\src\\main\\resources\\GoblinStats.csv"));
+                scanner.useDelimiter(",");
+                while (scanner.hasNext()) 
+                {
+                    storer.add(i, scanner.next());
+                    i++; 
+                }
+           return storer;
+            default:
+                return null;
         }
-         
-        scanner.close();
-        return storer;
     }
 
-    public static ArrayList<String> setElfStats() throws FileNotFoundException {
-        ArrayList<String> storer = new ArrayList<>();
-        Scanner scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0\\src\\main\\resources\\ElfStats.csv"));
-        scanner.useDelimiter(",");
-        int i = 0;
-        while (scanner.hasNext()) {
-            storer.add(i, scanner.next());
-            i++; 
-        }
-        scanner.close();
-        return storer;
-    }
-
-    public static ArrayList<String> setDwarfStats() throws FileNotFoundException {
-        ArrayList<String> storer = new ArrayList<>();
-        Scanner scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0\\src\\main\\resources\\DwarfStats.csv"));
-        scanner.useDelimiter(",");
-        int i = 0;
-        while (scanner.hasNext()) {
-            storer.add(i, scanner.next());
-            i++; 
-        }
-        scanner.close();
-        return storer;
-    }
-
-    public static ArrayList<String> setGoblinStats() throws FileNotFoundException {
-        ArrayList<String> storer = new ArrayList<>();
-        Scanner scanner = new Scanner(new File("C:\\Users\\Hakem the Dream\\Documents\\Revature\\Project-0\\src\\main\\resources\\GoblinStats.csv"));
-        scanner.useDelimiter(",");
-        int i = 0;
-        while (scanner.hasNext()) {
-            storer.add(i, scanner.next());
-            i++; 
-        }
-        scanner.close();
-        return storer;
-    }
-    //public static String[] readFiles() throws IOException {}
-
-    //Convert string array to double array
-    public static ArrayList<Double> convert(ArrayList<String> s) {
+    public static ArrayList<Double> setHumanStats() throws FileNotFoundException {
+        ArrayList<String> storer = fetchFiles("1");
         ArrayList<Double> holder = new ArrayList<>();
-                 for (int i = 0; i < s.size(); i++) {
-            holder.add(i, Double.parseDouble(s.get(i)));
-            }   
+        for (int i = 0; i < storer.size(); i++) {
+            holder.add(i, Double.parseDouble(storer.get(i)));
+        }   
         return holder;
     }
+
+    public static ArrayList<Double> setElfStats() throws FileNotFoundException {
+        ArrayList<String> storer = fetchFiles("2");
+        ArrayList<Double> holder = new ArrayList<>();
+        for (int i = 0; i < storer.size(); i++) {
+            holder.add(i, Double.parseDouble(storer.get(i)));
+        }   
+        return holder;
+    }
+
+    public static ArrayList<Double> setDwarfStats() throws FileNotFoundException {
+        ArrayList<String> storer = fetchFiles("3");
+        ArrayList<Double> holder = new ArrayList<>();
+        for (int i = 0; i < storer.size(); i++) {
+            holder.add(i, Double.parseDouble(storer.get(i)));
+        }   
+        return holder;
+    }
+    
+    public static ArrayList<Double> setGoblinStats() throws FileNotFoundException {
+        ArrayList<String> storer = fetchFiles("4");
+        ArrayList<Double> holder = new ArrayList<>();
+        for (int i = 0; i < storer.size(); i++) {
+            holder.add(i, Double.parseDouble(storer.get(i)));
+        }   
+        return holder;
+    }
+    
+    
     public static String humanDisplay() throws IOException {
-        ArrayList<String> s = setHumanStats();
-        ArrayList<Double> d = convert(s);
+        ArrayList<Double> d = setHumanStats();
         String stats = "Your Stats: \n Strength: " + d.get(0) + "\n Constitution: " + d.get(1) 
                 + "\n Agility: " + d.get(2) + "\n Intelligence: " + d.get(3) + "\n Range: " 
                 + d.get(4) + "\n Growth: " + d.get(5) + "\n Population: " + d.get(6);
@@ -110,8 +133,7 @@ public class Stats extends Kingdoms {
     }
 
     public static String elfDisplay() throws IOException {
-        ArrayList<String> s = setElfStats();
-        ArrayList<Double> d = convert(s);
+        ArrayList<Double> d = setElfStats();
         String stats = "Your Stats: \n Strength: " + d.get(0) + "\n Constitution: " + d.get(1) 
                 + "\n Agility: " + d.get(2) + "\n Intelligence: " + d.get(3) + "\n Range: " 
                 + d.get(4) + "\n Growth: " + d.get(5) + "\n Population: " + d.get(6);
@@ -119,8 +141,7 @@ public class Stats extends Kingdoms {
     }
 
     public static String dwarfDisplay() throws IOException {
-        ArrayList<String> s = setDwarfStats();
-        ArrayList<Double> d = convert(s);
+        ArrayList<Double> d = setDwarfStats();
         String stats = "Your Stats: \n Strength: " + d.get(0) + "\n Constitution: " + d.get(1) 
                 + "\n Agility: " + d.get(2) + "\n Intelligence: " + d.get(3) + "\n Range: " 
                 + d.get(4) + "\n Growth: " + d.get(5) + "\n Population: " + d.get(6);
@@ -128,8 +149,7 @@ public class Stats extends Kingdoms {
     }
 
     public static String goblinDisplay() throws IOException {
-        ArrayList<String> s = setGoblinStats();
-        ArrayList<Double> d = convert(s);
+        ArrayList<Double> d = setGoblinStats();
         String stats = "Your Stats: \n Strength: " + d.get(0) + "\n Constitution: " + d.get(1) 
                 + "\n Agility: " + d.get(2) + "\n Intelligence: " + d.get(3) + "\n Range: " 
                 + d.get(4) + "\n Growth: " + d.get(5) + "\n Population: " + d.get(6);

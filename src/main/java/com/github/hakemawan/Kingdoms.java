@@ -2,7 +2,7 @@ package com.github.hakemawan;
 
 import java.io.File;
 
-public class Kingdoms {
+public class Kingdoms extends Stats {
     String kindomType; 
     File file; 
 

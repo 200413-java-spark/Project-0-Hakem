@@ -1,2 +1,2 @@
 # javac src.main.java.com.github.hakemawan.KC.java  
-mvn package
+mvn clean compile package
