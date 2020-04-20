@@ -27,7 +27,7 @@ class KC {
         System.out.println("Who would you like to attack? 1. " + game.getFoeOne().kindomType + ", 2." + game.getFoeTwo().kindomType + ", 3." + game.getFoeThree().kindomType + " Kingdoms\n" );
         game.chooseToAttack(input.nextLine());
         
-
+            started = false;
         }
         //System.out.println("Testing");
         input.close();

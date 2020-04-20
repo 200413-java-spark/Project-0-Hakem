@@ -12,7 +12,6 @@ public class Game extends Kingdoms{
     Kingdoms foeOne = new Kingdoms();
     Kingdoms foeTwo = new Kingdoms();
     Kingdoms foeThree = new Kingdoms();
-    Calc calc = new Calc();
 
     public void chooseKingdom (String input){
                 
@@ -86,7 +85,6 @@ public class Game extends Kingdoms{
                 break;            
         }
         
-        calc.calcDamage();
     }
 
 
